@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 
 const TextClassifier = () => {
+  const [beforeSubmit, afterSubmit] = useState(true);
+
   const [inputField, changeInputField] = useState({
     inputs: "",
   });
 
-  const [result, changeResult] = useState([]);
+  const [label, changeLabel] = useState([]);
+  const [score, changeScore] = useState([]);
 
   const inputHandler = (newEvent) => {
     changeInputField({
@@ -26,9 +29,14 @@ const TextClassifier = () => {
       .then((response) => {
         const sortedOutput = response.data[0].sort((a, b) => b.score - a.score);
 
-        const prediction = sortedOutput[0].label;
-        changeResult(prediction);
-        console.log(prediction);
+        const labelPrediction = sortedOutput[0].label;
+        const scorePrediction = sortedOutput[0].score;
+
+        changeLabel(labelPrediction);
+        changeScore(scorePrediction);
+        afterSubmit(false);
+        console.log(labelPrediction);
+        console.log(scorePrediction);
       });
   };
 
@@ -45,7 +53,7 @@ const TextClassifier = () => {
             </div>
             <div className="row g-3">
               <div className="col">
-                <div class="card">
+                <div class="card border border-primary shadow">
                   <div class="card-body">
                     <div className="col col-12 c0l-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
                       <label htmlFor="" className="form-label">
@@ -68,24 +76,47 @@ const TextClassifier = () => {
                 </div>
               </div>
             </div>
-            <div className="row g-3 mt-5">
-              <div className="col">
-                <div class="card">
-                  <div class="card-body">
-                    <div className="col col-12 c0l-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
-                      <label htmlFor="" className="form-label">
-                        RESULT
-                      </label>
-                      <input
-                        type="text"
-                        value={result}
-                        className="form-control"
-                      />
+            {beforeSubmit ? (
+              <div className="row g-3 mt-5">
+                <div className="col">
+                  <p className="text-muted">
+                    Hello..This is a Text Classifier made by directly calling
+                    the inference api from Hugging Face. When you click the
+                    submit button the api will return a result whether the input
+                    is poistive or negative and this text will disappear. Try
+                    it.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="row g-3 mt-5">
+                <div className="col">
+                  <div class="card border border-primary shadow">
+                    <div class="card-body">
+                      <div className="col col-12 c0l-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                        <label htmlFor="" className="form-label">
+                          RESULT
+                        </label>
+                        <input
+                          type="text"
+                          value={label}
+                          className="form-control"
+                        />
+                      </div>
+                      <div className="col col-12 col-sm-12 col-md-12">
+                        <input
+                          type="range"
+                          min="0"
+                          max="1"
+                          value={score}
+                          className="form-range"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <nav class="navbar navbar-expand-lg bg-body-secondary border border-primary">
         <div class="container-fluid">
           <button
             class="navbar-toggler"
@@ -22,11 +22,6 @@ const Navbar = () => {
               <li class="nav-item">
                 <Link class="nav-link active" aria-current="page" to="/">
                   Text Classifier
-                </Link>
-              </li>
-              <li class="nav-item">
-                <Link class="nav-link" to="/textgen">
-                  Text Genarator
                 </Link>
               </li>
             </ul>
