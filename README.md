@@ -34,7 +34,8 @@ The api is referenced in the html page as a variable and then returned its resul
 ### Development Platform
 The Project uses the inference api from the **Hugging Face** platform.
 It is the integrateed to HTML page using the JS library- **React JS**.
-The page is made Responsive using **Bootstrap 5**
+The page is made Responsive using **Bootstrap 5**.
+The API was tested using **Postman**.
 
 ### References
   - YouTube(https://youtu.be/XMYlqm2Dq1w?si=Z_sO-p7L8FuHwLm1)
