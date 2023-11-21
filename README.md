@@ -15,7 +15,7 @@ A simple **Text Classification App** created by integrating the inference api fr
 The **Frontend is made using reactjs, HTML5, Bootstrap**.
 The **inference api** is called to make the classification.
 
-### Aim Of This Project
+### Aim of the Project
 The Aim of this project is to classify text based on its emotion, to see if a text is positive or negative.
 
 ### Limitations
